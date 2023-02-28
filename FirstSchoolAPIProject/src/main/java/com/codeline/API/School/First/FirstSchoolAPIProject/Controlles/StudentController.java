@@ -1,0 +1,41 @@
+package com.codeline.API.School.First.FirstSchoolAPIProject.Controlles;
+
+
+import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Student;
+import com.codeline.API.School.First.FirstSchoolAPIProject.Services.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+@RequestMapping(value = "student")
+// Any request coming form browser that is related to school it will be mapped with this class
+public class StudentController {
+
+    @Autowired
+    StudentService studentService;
+
+    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
+    //function that returns all student
+    public List<Student> getAllStudent() {
+        List<Student> students = studentService.getAllStudent();
+        return students;
+    }
+
+    @RequestMapping(value = "/getById", method = RequestMethod.GET)
+    public Student getStudentById(@RequestParam Integer studentId) {
+        Student student = studentService.getStudentById(studentId);
+        return student;
+    }
+
+    @RequestMapping(value = "/getByStudentName", method = RequestMethod.GET)
+    public Student getStudentByName(@RequestParam String student_name) {  //The student_name is the same variable as the sql
+        Student studentName = studentService.getStudentByName(student_name);
+        return studentName;
+    }
+
+}

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -70,4 +71,19 @@ public class SchoolController {
         return getLatestUpdated;
     }
 
-}
+    @RequestMapping(value = "/deleteById")
+    public void deleteById(Integer id) {
+       schoolService.deleteById(id);
+
+    }
+
+
+
+
+
+   // @RequestMapping(value = "/getSchoolCreatedAfterDate", method = RequestMethod.GET)
+   // public School getBySchoolName(@RequestParam String createdDate) {
+       // School createdDateAfter = schoolService.getSchoolCreatedAfterDate(createdDate);
+       // return createdDateAfter;
+    }
+

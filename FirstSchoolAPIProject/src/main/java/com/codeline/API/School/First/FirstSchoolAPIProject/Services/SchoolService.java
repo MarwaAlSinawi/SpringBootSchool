@@ -49,6 +49,16 @@ public class SchoolService {
         return schoolRepository.getLatestUpdated();
     }
 
+    public List<School> getSchoolCreatedAfterDate() {
+        return schoolRepository.getSchoolCreatedAfterDate();
+    }
+
+
+    public void deleteById(Integer id) {
+    School deleteSchoolId = schoolRepository.findById(id).get();
+    schoolRepository.delete(deleteSchoolId);
+    }
+
 
     public void setCreatedDateByUserInput(String date, Integer id) throws ParseException {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");

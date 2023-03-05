@@ -77,11 +77,18 @@ public class SchoolController {
 
     }
 
+    @RequestMapping(value = "/deleteAll")
+    public void deleteAll() {
+        schoolService.deleteAll();
+
+    }
 
 
 
 
-   // @RequestMapping(value = "/getSchoolCreatedAfterDate", method = RequestMethod.GET)
+
+
+    // @RequestMapping(value = "/getSchoolCreatedAfterDate", method = RequestMethod.GET)
    // public School getBySchoolName(@RequestParam String createdDate) {
        // School createdDateAfter = schoolService.getSchoolCreatedAfterDate(createdDate);
        // return createdDateAfter;

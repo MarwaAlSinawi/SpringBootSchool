@@ -1,11 +1,13 @@
 package com.codeline.API.School.First.FirstSchoolAPIProject.Repositories;
 
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.School;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository // Collection of code that is going to be used for the Objects
@@ -39,6 +41,11 @@ public interface SchoolRepository extends CrudRepository<School, Integer> {
 
     @Query(value = "SELECT sch from School sch where sch.createdDate >= :createdDate")
     List<School> getSchoolCreatedAfterDate();
+
+    @Modifying
+    @Transactional
+    @Query(value = "Update School sch Set sch.isActive =false")
+    void deleteAll();
 
 
 

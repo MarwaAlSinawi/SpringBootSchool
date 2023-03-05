@@ -60,6 +60,11 @@ public class SchoolService {
     }
 
 
+    public void deleteAll() {
+     schoolRepository.deleteAll();
+    }
+
+
     public void setCreatedDateByUserInput(String date, Integer id) throws ParseException {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date convertedDateFromStringToDateFormat = formatter.parse(date);

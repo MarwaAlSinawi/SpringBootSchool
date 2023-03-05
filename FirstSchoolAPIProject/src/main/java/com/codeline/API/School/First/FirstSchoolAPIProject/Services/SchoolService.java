@@ -45,6 +45,11 @@ public class SchoolService {
     }
 
 
+    public List<School> getLatestUpdated() {
+        return schoolRepository.getLatestUpdated();
+    }
+
+
     public void setCreatedDateByUserInput(String date, Integer id) throws ParseException {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date convertedDateFromStringToDateFormat = formatter.parse(date);

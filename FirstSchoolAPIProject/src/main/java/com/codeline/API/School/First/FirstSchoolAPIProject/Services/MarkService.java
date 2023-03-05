@@ -32,4 +32,6 @@ public class MarkService {
     public List<Mark> getAllNotActiveMark() {
         return markRepository.getAllNotActiveMark();
     }
+
+
 }

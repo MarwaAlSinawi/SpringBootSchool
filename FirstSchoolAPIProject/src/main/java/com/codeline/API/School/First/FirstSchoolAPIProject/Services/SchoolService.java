@@ -55,7 +55,7 @@ public class SchoolService {
 
 
     public void deleteById(Integer id) {
-    School deleteSchoolId = schoolRepository.findById(id).get();
+    School deleteSchoolId = schoolRepository.getSchoolById(id);
     schoolRepository.delete(deleteSchoolId);
     }
 

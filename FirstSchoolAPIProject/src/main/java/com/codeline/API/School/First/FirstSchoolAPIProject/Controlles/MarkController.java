@@ -1,5 +1,6 @@
 package com.codeline.API.School.First.FirstSchoolAPIProject.Controlles;
 
+import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Course;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Mark;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Services.MarkService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,18 @@ public class MarkController {
     public Mark getMarkById(@RequestParam Integer markId) {
         Mark mark = markServices.getMarkById(markId);
         return mark;
+    }
+
+    @RequestMapping(value = "/getAllMarkByIsActive")
+    public List<Mark> getAllActiveMark() {
+        List<Mark> activeMarkList = markServices.getAllActiveMark();
+        return activeMarkList;
+    }
+
+    @RequestMapping(value = "/getAllMarkByIsNotActive")
+    public List<Mark> getAllUnActiveMark() {
+        List<Mark> notActiveMarkList = markServices.getAllNotActiveMark();
+        return notActiveMarkList;
+
     }
 }

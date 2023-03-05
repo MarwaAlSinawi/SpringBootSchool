@@ -1,5 +1,6 @@
 package com.codeline.API.School.First.FirstSchoolAPIProject.Repositories;
 
+import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Course;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Mark;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -21,4 +22,10 @@ public interface MarkRepository extends CrudRepository<Mark, Integer> {
     // :id is coming from the user
 
     Mark getMarkById(@Param("markId") Integer id);
+
+    @Query(value = "SELECT m from Course m where m.isActive = true")
+    List<Mark> getAllActiveMark();
+
+    @Query(value = "SELECT m from Course m where m.isActive = false")
+    List<Mark> getAllNotActiveMark();
 }

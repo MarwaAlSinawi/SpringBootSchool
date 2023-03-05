@@ -57,5 +57,11 @@ public class SchoolController {
         schoolService.setCreatedDateByUserInput(data.getDate(), data.getId());
 
     }
-}
 
+    @RequestMapping(value = "/getLatestRow")
+    public List<School> getLatestRow() {
+        List<School> getLatestRow = schoolService.getLatestRow();
+        return getLatestRow;
+    }
+
+}

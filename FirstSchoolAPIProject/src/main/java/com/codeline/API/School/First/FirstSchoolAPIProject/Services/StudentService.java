@@ -1,6 +1,7 @@
 package com.codeline.API.School.First.FirstSchoolAPIProject.Services;
 
 
+import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Course;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.School;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Student;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Repositories.SchoolRepository;
@@ -50,4 +51,13 @@ public class StudentService {
         List<Student> studentList = studentRepository.getStudentsBySchoolId(schoolId);
         return studentList;
     }
+    public List<Student> getAllActiveStudent() {
+        return studentRepository.getAllActiveStudent();
+    }
+
+    public List<Student> getAllNotActiveStudent() {
+        return studentRepository.getAllNotActiveStudent();
+    }
+
+
 }

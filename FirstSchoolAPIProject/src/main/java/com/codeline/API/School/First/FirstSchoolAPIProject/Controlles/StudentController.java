@@ -1,6 +1,7 @@
 package com.codeline.API.School.First.FirstSchoolAPIProject.Controlles;
 
 
+import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Mark;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Student;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,20 @@ public class StudentController {
     public Student getStudentByName(@RequestParam String student_name) {  //The student_name is the same variable as the sql
         Student studentName = studentService.getStudentByName(student_name);
         return studentName;
+    }
+    @RequestMapping(value = "/getAllstudentByIsActive")
+    public List<Student> getAllActivestudent() {
+        List<Student> activestudentList = studentService.getAllActiveStudent();
+        return activestudentList;
+    }
+
+
+
+    @RequestMapping(value = "/getAllStudentByIsNotActive")
+    public List<Student> getAllUnActiveStudent() {
+        List<Student> notActiveStudentList =studentService.getAllNotActiveStudent();
+        return notActiveStudentList;
+
     }
 
 }

@@ -112,6 +112,13 @@ public class SchoolService {
         List<School> schools = schoolRepository.getSchoolsByUpdatedDate(updatedDate);
         return schools;
     }
+    public void deleteSchoolsByUpdatedDate(String updatedDate) {
+        List<School> schools = schoolRepository.getSchoolsByUpdatedDate(updatedDate);
+        schools.stream().forEach(M -> M.setIsActive(false));
+        schoolRepository.saveAll(schools);
+    }
+
+
 
 }
 

@@ -89,6 +89,12 @@ public class SchoolController {
 
     }
 
+    @RequestMapping(value = "/createSchool")
+    public void createSchool( String name) {
+        schoolService.createSchool(name);
+
+    }
+
 
 
 

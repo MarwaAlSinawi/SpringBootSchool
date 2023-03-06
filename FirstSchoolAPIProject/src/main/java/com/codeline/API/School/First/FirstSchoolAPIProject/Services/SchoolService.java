@@ -72,6 +72,15 @@ public class SchoolService {
      schoolRepository.deleteAll();
     }
 
+    public void createSchool(String name){
+        School school=new School();
+        school.setName(name);
+        school.setCreatedDate(new Date());
+        school.setUpdatedDate(new Date());
+        school.setIsActive(Boolean.TRUE);
+        schoolRepository.save(school);
+    }
+
 
     public void setCreatedDateByUserInput(String date, Integer id) throws ParseException {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");

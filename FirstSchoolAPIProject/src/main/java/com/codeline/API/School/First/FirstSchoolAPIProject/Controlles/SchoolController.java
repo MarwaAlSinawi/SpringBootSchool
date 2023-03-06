@@ -107,6 +107,11 @@ public class SchoolController {
         List<School> createdDateAfter = schoolService.getSchoolCreatedAfterDate(createdDate);
         return createdDateAfter;
     }
+    @RequestMapping(value = "getSchoolsByCreatedDate", method = RequestMethod.GET)
+    public List<School> getSchoolsByCreatedDate(String createdDate) throws ParseException {
+        List<School> schools = schoolService.getSchoolsByCreatedDate(createdDate);
+        return schools;
+    }
 }
 
 

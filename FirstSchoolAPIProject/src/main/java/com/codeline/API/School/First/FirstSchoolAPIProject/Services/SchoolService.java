@@ -4,6 +4,8 @@ import com.codeline.API.School.First.FirstSchoolAPIProject.Models.School;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Repositories.SchoolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -102,4 +104,10 @@ public class SchoolService {
      List<School> school=schoolRepository.getSchoolCreatedAfterDate(convertedDateFromStringToDateFormat);
         return school;
     }
+    public  List<School> getSchoolsByCreatedDate(String createdDate){
+        List<School> schools=schoolRepository.getSchoolsByCreatedDate(createdDate);
+        return schools;
+    }
+
 }
+

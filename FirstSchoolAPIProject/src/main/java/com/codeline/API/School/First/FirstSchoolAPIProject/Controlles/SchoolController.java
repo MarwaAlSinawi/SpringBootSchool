@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -124,6 +125,10 @@ public class SchoolController {
     @RequestMapping(value = "deleteSchoolsByCreatedDate", method = RequestMethod.POST)
     public void deleteSchoolsByCreatedDate(@RequestParam String createdDate) {
         schoolService.deleteSchoolsByCreatedDate(createdDate);
+    }
+    @RequestMapping(value = "/getSchoolByNumberOfStudent", method = RequestMethod.POST)
+    public School getSchoolByNumberOfStudent(@RequestParam Integer numberOfStudent) {
+        return schoolService.getSchoolByNumberOfStudent(numberOfStudent);
     }
 }
 

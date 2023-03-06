@@ -1,6 +1,6 @@
 package com.codeline.API.School.First.FirstSchoolAPIProject.Repositories;
 
-import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Course;
+
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Student;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -34,4 +34,10 @@ public interface StudentRepository extends CrudRepository<Student, Integer> { //
 
     @Query(value = "SELECT s from Student s where s.isActive = false")
     List<Student> getAllNotActiveStudent();
+
+    @Query(value = "SELECT DISTINCT(school_id) FROM student", nativeQuery = true)
+    List<Integer> getDistinctSchoolIdsFromStudent();
+
+    @Query(value = "SELECT COUNT(id) From student where school_id = ?1", nativeQuery = true)
+    Integer getCountOfStudentsBySchoolId(Integer schoolId);
 }

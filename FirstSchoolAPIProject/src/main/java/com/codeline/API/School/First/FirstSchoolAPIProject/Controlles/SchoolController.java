@@ -73,7 +73,7 @@ public class SchoolController {
 
     @RequestMapping(value = "/deleteById")
     public void deleteById(Integer id) {
-       schoolService.deleteById(id);
+        schoolService.deleteById(id);
 
     }
 
@@ -90,24 +90,23 @@ public class SchoolController {
     }
 
     @RequestMapping(value = "/createSchool")
-    public void createSchool( String name) {
+    public void createSchool(String name) {
         schoolService.createSchool(name);
 
     }
+
     @RequestMapping(value = "/updateSchool")
-    public void updateSchool(@RequestParam Integer id , String name, Boolean isActive) {
-        schoolService.updateSchool( id ,  name,  isActive);
+    public void updateSchool(@RequestParam Integer id, String name, Boolean isActive) {
+        schoolService.updateSchool(id, name, isActive);
 
     }
 
 
-
-
-
-
-    // @RequestMapping(value = "/getSchoolCreatedAfterDate", method = RequestMethod.GET)
-   // public School getBySchoolName(@RequestParam String createdDate) {
-       // School createdDateAfter = schoolService.getSchoolCreatedAfterDate(createdDate);
-       // return createdDateAfter;
+    @RequestMapping(value = "/getSchoolCreatedAfterDate", method = RequestMethod.GET)
+    public  List <School> getSchoolCreatedAfterDate(@RequestParam String createdDate) throws ParseException {
+        List<School> createdDateAfter = schoolService.getSchoolCreatedAfterDate(createdDate);
+        return createdDateAfter;
     }
+}
+
 

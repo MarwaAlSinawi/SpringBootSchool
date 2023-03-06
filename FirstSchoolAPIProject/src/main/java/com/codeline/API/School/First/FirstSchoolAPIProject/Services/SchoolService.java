@@ -49,9 +49,7 @@ public class SchoolService {
         return schoolRepository.getLatestUpdated();
     }
 
-    public List<School> getSchoolCreatedAfterDate() {
-        return schoolRepository.getSchoolCreatedAfterDate();
-    }
+
 
 
     public void deleteById(Integer id) {
@@ -96,5 +94,12 @@ public class SchoolService {
         School school = schoolRepository.getSchoolById(id);
         school.setCreatedDate(convertedDateFromStringToDateFormat);
         schoolRepository.save(school);
+    }
+
+    public List<School> getSchoolCreatedAfterDate( String createdDate) throws ParseException {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date convertedDateFromStringToDateFormat = formatter.parse(createdDate);
+     List<School> school=schoolRepository.getSchoolCreatedAfterDate(convertedDateFromStringToDateFormat);
+        return school;
     }
 }

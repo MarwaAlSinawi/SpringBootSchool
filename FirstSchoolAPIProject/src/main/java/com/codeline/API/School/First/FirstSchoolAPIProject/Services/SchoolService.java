@@ -80,6 +80,14 @@ public class SchoolService {
         school.setIsActive(Boolean.TRUE);
         schoolRepository.save(school);
     }
+    public void updateSchool(Integer id , String name, Boolean isActive){
+        School school=schoolRepository.getSchoolById(id);
+        school.setName(name);
+        school.setCreatedDate(new Date());
+        school.setUpdatedDate(new Date());
+        school.setIsActive(isActive);
+        schoolRepository.save(school);
+    }
 
 
     public void setCreatedDateByUserInput(String date, Integer id) throws ParseException {

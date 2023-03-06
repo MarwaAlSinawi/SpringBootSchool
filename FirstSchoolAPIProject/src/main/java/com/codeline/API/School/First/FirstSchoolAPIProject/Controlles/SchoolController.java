@@ -94,6 +94,11 @@ public class SchoolController {
         schoolService.createSchool(name);
 
     }
+    @RequestMapping(value = "/updateSchool")
+    public void updateSchool(@RequestParam Integer id , String name, Boolean isActive) {
+        schoolService.updateSchool( id ,  name,  isActive);
+
+    }
 
 
 

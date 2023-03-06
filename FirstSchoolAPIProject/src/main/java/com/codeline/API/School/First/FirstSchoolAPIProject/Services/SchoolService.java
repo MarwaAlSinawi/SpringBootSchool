@@ -117,6 +117,11 @@ public class SchoolService {
         schools.stream().forEach(M -> M.setIsActive(false));
         schoolRepository.saveAll(schools);
     }
+    public void deleteSchoolsByCreatedDate(String createdDate) {
+        List<School> schoolList = schoolRepository.getSchoolsByCreatedDate(createdDate);
+        schoolList.stream().forEach(x -> x.setIsActive(false));
+        schoolRepository.saveAll(schoolList);
+    }
 
 
 

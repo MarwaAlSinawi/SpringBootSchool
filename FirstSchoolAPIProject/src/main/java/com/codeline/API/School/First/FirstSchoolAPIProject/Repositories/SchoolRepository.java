@@ -53,6 +53,9 @@ public interface SchoolRepository extends CrudRepository<School, Integer> {
     @Query(value = "select * from school where created_date like CONCAT (?1, '%') ", nativeQuery = true)
     List<School> getSchoolsByCreatedDate(String createdDate);
 
+    @Query(value = "select * from school where updated_date like CONCAT (?1, '%') ", nativeQuery = true)
+    List<School> getSchoolsByUpdatedDate(String updatedDate);
+
 
 
 

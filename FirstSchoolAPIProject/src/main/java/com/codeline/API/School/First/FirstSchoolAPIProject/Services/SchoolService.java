@@ -108,6 +108,10 @@ public class SchoolService {
         List<School> schools=schoolRepository.getSchoolsByCreatedDate(createdDate);
         return schools;
     }
+    public List<School> getSchoolsByUpdatedDate(String updatedDate) {
+        List<School> schools = schoolRepository.getSchoolsByUpdatedDate(updatedDate);
+        return schools;
+    }
 
 }
 

@@ -112,6 +112,11 @@ public class SchoolController {
         List<School> schools = schoolService.getSchoolsByCreatedDate(createdDate);
         return schools;
     }
+    @RequestMapping(value = "getSchoolsByUpdatedDate", method = RequestMethod.GET)
+    public List<School> getSchoolsByUpdatedDate(String updatedDate) throws ParseException {
+        List<School> schools = schoolService.getSchoolsByUpdatedDate(updatedDate);
+        return schools;
+    }
 }
 
 

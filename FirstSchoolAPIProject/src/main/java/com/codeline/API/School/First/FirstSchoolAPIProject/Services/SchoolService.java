@@ -60,6 +60,14 @@ public class SchoolService {
     }
 
 
+    public void deleteBySchoolName(String name ) {
+
+        School school= schoolRepository.getSchoolByName(name);
+        school.setIsActive(Boolean.FALSE);
+        schoolRepository.save(school);
+    }
+
+
     public void deleteAll() {
      schoolRepository.deleteAll();
     }

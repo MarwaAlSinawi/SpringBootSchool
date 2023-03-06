@@ -83,6 +83,12 @@ public class SchoolController {
 
     }
 
+    @RequestMapping(value = "/deleteBySchoolName")
+    public void deleteBySchoolName(@RequestParam String name) {
+        schoolService.deleteBySchoolName(name);
+
+    }
+
 
 
 

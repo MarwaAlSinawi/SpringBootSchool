@@ -110,7 +110,12 @@ public class CourseService {
         course.stream().forEach(x -> x.setIsActive(false));
         courseRepository.saveAll(course);
     }
-
+    public List<Course> getCoursesCreatedAfterDate(String createdDate) throws ParseException {
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date usableDate = dateFormatter.parse(createdDate);
+        List<Course> courses = courseRepository.getCourseCreatedAfterDate(usableDate);
+        return courses;
+    }
 
 }
 

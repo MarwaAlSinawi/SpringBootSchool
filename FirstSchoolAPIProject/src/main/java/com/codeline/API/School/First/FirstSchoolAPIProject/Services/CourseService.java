@@ -105,8 +105,14 @@ public class CourseService {
         List<Course> course = courseRepository.getCourseByUpdatedDate(updatedDate);
         return course;
     }
-
+    public void deleteCoursesByUpdatedDate(String updatedDate) {
+        List<Course> course = courseRepository.getCourseByUpdatedDate(updatedDate);
+        course.stream().forEach(x -> x.setIsActive(false));
+        courseRepository.saveAll(course);
     }
+
+
+}
 
 
 

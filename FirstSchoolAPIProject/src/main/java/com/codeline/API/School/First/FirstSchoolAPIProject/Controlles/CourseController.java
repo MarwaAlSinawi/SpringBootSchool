@@ -109,6 +109,11 @@ public class CourseController {
         return course;
 
     }
+    @RequestMapping(value = "deleteCoursesByUpdatedDate", method = RequestMethod.POST)
+    public void deleteCoursesByUpdatedDate(@RequestParam String updatedDate){
+        courseServices.deleteCoursesByUpdatedDate(updatedDate);
+
+    }
 
 }
 

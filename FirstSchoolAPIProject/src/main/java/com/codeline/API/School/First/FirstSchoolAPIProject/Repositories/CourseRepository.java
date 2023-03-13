@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 @Repository// Collection of code that is going to be used for the Objects
@@ -42,4 +43,8 @@ public interface CourseRepository extends CrudRepository<Course, Integer> {
     @Transactional
     @Query(value = "update Course c Set c.isActive = false")
     void deleteAllCourses();
+
+    @Query(value = "select c from Course c where c.createdDate >=  :createdDate")
+    List<Course> deleteAllCoursesCreatedAfterDate(Date createdDate);
+
 }

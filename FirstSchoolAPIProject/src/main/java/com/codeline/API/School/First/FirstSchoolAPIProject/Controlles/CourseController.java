@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -68,5 +69,16 @@ public class CourseController {
     public void deleteCourseById(@RequestParam Integer courseId) {
         courseServices.deleteCourseById(courseId);
     }
+    @RequestMapping(value = "deleteAllCoursesCreatedAfterDate", method = RequestMethod.POST)
+    public String deleteAllCoursesCreatedAfterDate(@RequestParam String createdDate)  {
+        try {
+            courseServices.deleteAllCoursesCreatedAfterDate(createdDate);
+        } catch (ParseException e) {
+            return "Failed";
+        }
+        return "Success";
+    }
 
-}
+    }
+
+

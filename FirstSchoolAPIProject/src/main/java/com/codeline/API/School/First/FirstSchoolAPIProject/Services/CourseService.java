@@ -122,6 +122,13 @@ public class CourseService {
         course.setIsActive(isActive);
         courseRepository.save(course);
     }
+    public void createCourse(String courseName, Integer studentId) {
+        Course course = new Course();
+        course.setName(courseName);
+        course.setIsActive(true);
+        course.setCreatedDate(new Date());
+        courseRepository.save(course);
+    }
 
 
 }

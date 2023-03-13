@@ -118,6 +118,10 @@ public class CourseController {
     public void updateCourse(@RequestParam Integer courseId,String courseName,Integer studentId,Boolean isActive){
        courseServices .updateCourse(courseId,courseName,studentId,isActive);
     }
+    @RequestMapping(value = "createCourse", method = RequestMethod.POST)
+    public void createCourse(@RequestParam String courseName, Integer studentId) {
+        courseServices.createCourse(courseName, studentId);
+    }
 
 
 }

@@ -60,4 +60,9 @@ public class StudentService {
     }
 
 
+
+    public Student getLatestRow() {
+        Student student = studentRepository.getLatestRow();
+        return student;
+    }
 }

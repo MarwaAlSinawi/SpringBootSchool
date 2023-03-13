@@ -65,9 +65,19 @@ public class CourseService {
         course.stream().forEach(x -> x.setIsActive(false));
         courseRepository.saveAll(course);
     }
-
+    public List<Course> getAllActiveCoursesForAStudent(Integer studentId) {
+        List<Course> allActiveCoursesForAStudent = courseRepository.getAllActiveCoursesForAStudent(studentId);
+        return allActiveCoursesForAStudent;
+    }
+    public List<Course> getCoursesByStudentId(Integer studentId) {
+        List<Course> coursesOfAStudent = courseRepository.getCoursesByStudentId(studentId);
+        return coursesOfAStudent;
+    }
 
 }
+
+
+
 
 
 

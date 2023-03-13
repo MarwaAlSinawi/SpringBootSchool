@@ -78,6 +78,17 @@ public class CourseController {
         }
         return "Success";
     }
+    @RequestMapping(value = "getAllActiveCoursesForAStudent", method = RequestMethod.GET)
+    public List<Course> getAllActiveCoursesForAStudent(@RequestParam Integer studentId) {
+        List<Course> AllActiveCoursesForAStudent = courseServices.getCoursesByStudentId(studentId);
+        return AllActiveCoursesForAStudent;
+    }
+    @RequestMapping(value = "getCourseByStudentId", method = RequestMethod.GET)
+    public List<Course> getCourseByStudentId(@RequestParam Integer studentId) {
+        List<Course> coursesOfAStudent =courseServices.getCoursesByStudentId(studentId);
+
+        return coursesOfAStudent;
+    }
 
     }
 

@@ -67,4 +67,6 @@ public interface CourseRepository extends CrudRepository<Course, Integer> {
     List<Course> getCourseCreatedAfterDate(@Param("createdDate") Date createdDate);
 
 
+
+
 }

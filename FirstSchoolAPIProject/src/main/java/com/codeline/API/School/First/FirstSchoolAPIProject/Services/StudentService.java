@@ -70,6 +70,12 @@ public class StudentService {
         Student student = studentRepository.getLatestUpdatedDate();
         return student;
     }
+        public List<Student> getStudentsBySchoolId(Integer schoolId) {
+            List<Student> students = studentRepository.getStudentBySchoolId(schoolId);
+            return students;
+        }
+
+
 
     public List<Student> getStudentCreatedAfterDate() {
         List<Student> studentCreatedAfterDate = studentRepository.getStudentCreatedAfterDate();

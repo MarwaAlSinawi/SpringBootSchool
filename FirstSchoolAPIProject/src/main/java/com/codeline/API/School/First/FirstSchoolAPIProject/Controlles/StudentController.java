@@ -70,6 +70,13 @@ public class StudentController {
             studentList = studentService.getStudentCreatedAfterDate();
             return studentList;
         }
+    @RequestMapping(value = "getByName", method = RequestMethod.GET)
+    public Student getStudentByStudentName(@RequestParam String studentName) {
+        Student student = studentService.getStudentByName(studentName);
+
+        return student;
     }
+
+}
 
 

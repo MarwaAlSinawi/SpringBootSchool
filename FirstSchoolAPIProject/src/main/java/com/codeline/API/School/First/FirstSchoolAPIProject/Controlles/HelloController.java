@@ -14,8 +14,8 @@ import java.util.List;
 @RestController
 public class HelloController {
 
-    @Autowired // create instance, and then it can be used in all the program
-    StudentService studentService;
+//    @Autowired // create instance, and then it can be used in all the program
+//    StudentService studentService;
 
     @Autowired // create instance, and then it can be used in all the program
     SchoolService schoolService;
@@ -26,15 +26,15 @@ public class HelloController {
     @Autowired // create instance, and then it can be used in all the program
     MarkService markServices;
 
-    @GetMapping
-    public void addStudent() {
-        studentService.addStudent();
-    }
-
-    @RequestMapping(value = "student/getStudentsBySchoolName", method = RequestMethod.GET)
-    public List<Student> getStudentsBySchoolName(@RequestParam String schoolName) {
-        return studentService.getStudentsBySchoolName(schoolName);
-    }
+//    @GetMapping
+//    public void addStudent() {
+//        studentService.addStudent();
+//    }
+//
+//    @RequestMapping(value = "student/getStudentsBySchoolName", method = RequestMethod.GET)
+//    public List<Student> getStudentsBySchoolName(@RequestParam String schoolName) {
+//        return studentService.getStudentsBySchoolName(schoolName);
+//    }
 
 
 }

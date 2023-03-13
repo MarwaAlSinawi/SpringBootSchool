@@ -95,6 +95,13 @@ public class CourseController {
     courseServices.deleteCoursesByName(courseName);
 
     }
+    @RequestMapping(value = "getCourseByCreatedDate", method = RequestMethod.GET)
+    public List<Course> getCourseByCreatedDate(@RequestParam String createdDate)  {
+        List<Course> course = courseServices.getCoursesByCreatedDate(createdDate);
+
+        return course;
+
+    }
 
 }
 

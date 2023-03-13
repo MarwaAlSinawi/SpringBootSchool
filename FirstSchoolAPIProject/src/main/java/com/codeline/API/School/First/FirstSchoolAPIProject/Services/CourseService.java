@@ -91,7 +91,19 @@ public class CourseService {
         course.stream().forEach(x -> x.setIsActive(false));
         courseRepository.saveAll(course);
     }
-}
+    public void deleteCoursesByCreatedDate(String createdDate) {
+        List<Course> course = courseRepository.getCourseByCreatedDate(createdDate);
+        course.stream().forEach(x -> x.setIsActive(false));
+        courseRepository.saveAll(course);
+    }
+
+        public List<Course> getCoursesByCreatedDate(String createdDate) {
+            List<Course> course = courseRepository.getCourseByCreatedDate(createdDate);
+            return course;
+        }
+
+    }
+
 
 
 

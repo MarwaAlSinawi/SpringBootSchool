@@ -59,4 +59,6 @@ public interface StudentRepository extends JpaRepository<Student, Integer> { // 
     @Query(value = "select st from Student st where st.school.id = :schoolId")
     List<Student> getStudentBySchoolId(@Param("schoolId") Integer id);
 
+    @Query(value = "select * from student where created_date like CONCAT (?1, '%') ", nativeQuery = true)
+    List<Student> getStudentsByCreatedDate(String createdDate);
 }

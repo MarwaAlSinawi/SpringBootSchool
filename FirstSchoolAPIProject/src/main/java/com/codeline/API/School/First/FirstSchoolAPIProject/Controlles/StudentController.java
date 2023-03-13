@@ -39,6 +39,7 @@ public class StudentController {
         Student studentName = studentService.getStudentByName(student_name);
         return studentName;
     }
+
     @RequestMapping(value = "/getAllstudentByIsActive")
     public List<Student> getAllActivestudent() {
         List<Student> activestudentList = studentService.getAllActiveStudent();
@@ -46,36 +47,46 @@ public class StudentController {
     }
 
 
-
     @RequestMapping(value = "/getAllStudentByIsNotActive")
     public List<Student> getAllUnActiveStudent() {
-        List<Student> notActiveStudentList =studentService.getAllNotActiveStudent();
+        List<Student> notActiveStudentList = studentService.getAllNotActiveStudent();
         return notActiveStudentList;
 
     }
+
     @RequestMapping(value = "getLatestRow", method = RequestMethod.GET)
     public Student getLatestRow() {
         Student student = studentService.getLatestRow();
         return student;
     }
+
     @RequestMapping(value = "getLatestUpdatedDate", method = RequestMethod.GET)
     public Student getLatestUpdatedDate() {
         Student student = studentService.getLatestUpdatedDate();
         return student;
     }
 
-        @RequestMapping(value = "getStudentCreatedAfterDate", method = RequestMethod.GET)
-        public List<Student> getStudentCreatedAfterDate() {
-            List<Student> studentList = new ArrayList<>();
-            studentList = studentService.getStudentCreatedAfterDate();
-            return studentList;
-        }
+    @RequestMapping(value = "getStudentCreatedAfterDate", method = RequestMethod.GET)
+    public List<Student> getStudentCreatedAfterDate() {
+        List<Student> studentList = new ArrayList<>();
+        studentList = studentService.getStudentCreatedAfterDate();
+        return studentList;
+    }
+
     @RequestMapping(value = "getByName", method = RequestMethod.GET)
     public Student getStudentByStudentName(@RequestParam String studentName) {
         Student student = studentService.getStudentByName(studentName);
 
         return student;
     }
-     }
+
+    @RequestMapping(value = "getStudentsByCreatedDate", method = RequestMethod.GET)
+    public List<Student> getStudentsByCreatedDate(@RequestParam String createdDate) {
+        List<Student> student = studentService.getStudentsByCreatedDate(createdDate);
+        return student;
+
+
+    }
+}
 
 

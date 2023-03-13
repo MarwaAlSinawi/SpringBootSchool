@@ -81,4 +81,8 @@ public class StudentService {
         List<Student> studentCreatedAfterDate = studentRepository.getStudentCreatedAfterDate();
         return studentCreatedAfterDate;
     }
+    public List<Student> getStudentsByCreatedDate(String createdDate)  {
+        List<Student> student = studentRepository.getStudentsByCreatedDate(createdDate);
+        return student;
+    }
 }

@@ -1,7 +1,6 @@
 package com.codeline.API.School.First.FirstSchoolAPIProject.Controlles;
 
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Course;
-import com.codeline.API.School.First.FirstSchoolAPIProject.Models.School;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Repositories.CourseRepository;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,11 +38,7 @@ public class CourseController {
         return course;
     }
 
-    @RequestMapping(value = "/getByCourseName", method = RequestMethod.GET)
-    public Course getByCourseName(@RequestParam String course_name) {
-        Course courseName = courseRepository.getCourseByName(course_name);
-        return courseName;
-    }
+
     @RequestMapping(value = "/getAllCourseByIsActive")
     public List<Course> getAllActiveCourse() {
         List<Course> activeCoursesList = courseServices.getAllActiveCourse();
@@ -89,7 +84,20 @@ public class CourseController {
 
         return coursesOfAStudent;
     }
+//    @RequestMapping(value = "getLatestUpdatedDate", method = RequestMethod.GET)
+//    public Course getLatestUpdatedDate() {
+//        Course course =courseServices.getLatestUpdatedDate();
+//
+//        return course;
+
+    @RequestMapping(value = "deleteCourseByName", method = RequestMethod.POST)
+    public void deleteCourseByName(@RequestParam String courseName) {
+    courseServices.deleteCoursesByName(courseName);
 
     }
+
+}
+
+
 
 

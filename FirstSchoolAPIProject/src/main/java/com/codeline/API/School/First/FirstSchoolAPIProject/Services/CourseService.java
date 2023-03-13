@@ -4,6 +4,7 @@ import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Course;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.School;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Repositories.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.text.DateFormat;
@@ -30,10 +31,15 @@ public class CourseService {
         return course;
     }
 
-    public Course getCourseByCourseName(String courseName) {
-        Course course = courseRepository.getCourseByName(courseName);
-        Integer courseId = course.getId();
-        course = courseRepository.getCourseById(courseId);
+//    public Course getCourseByCourseName(String courseName) {
+//        Course course = courseRepository.getCourseByName(courseName);
+//        Integer courseId = course.getId();
+//        course = courseRepository.getCourseById(courseId);
+//        return course;
+//    }
+
+    public List<Course> getCoursesByName(String courseName) {
+        List<Course> course = courseRepository.getCourseByName(courseName);
         return course;
     }
     public List<Course> getAllActiveCourse() {
@@ -74,7 +80,20 @@ public class CourseService {
         return coursesOfAStudent;
     }
 
+    //public Course getLatestUpdatedDate() {
+      //  Course course = courseRepository.getLatestUpdatedDate();
+      //  return course;
+
+
+    public void deleteCoursesByName(String courseName) {
+
+    List<Course>course =courseRepository.getCourseByName(courseName);
+        course.stream().forEach(x -> x.setIsActive(false));
+        courseRepository.saveAll(course);
+    }
 }
+
+
 
 
 

@@ -26,7 +26,9 @@ public interface CourseRepository extends CrudRepository<Course, Integer> {
     Course getCourseById(@Param("courseId") Integer id);
 
     @Query("SELECT c from Course c where c.name= :courseName")
-    Course getCourseByName(@Param("courseName") String course_name); // mapping the query and returning the Course
+    List<Course> getCourseByName(@Param("courseName") String course_name); // mapping the query and returning the Course
+
+
 
 
     @Query(value = "SELECT c from Course c where c.isActive = true")
@@ -52,5 +54,9 @@ public interface CourseRepository extends CrudRepository<Course, Integer> {
 
     @Query(value = "select c from Course c where c.student.id = :studentId")
     List<Course> getCoursesByStudentId(@Param("studentId") Integer id);
+
+  //  @Query(value = " select c from Course c where c.updatedDate = (select Max(c.updatedDate) from Course c)")
+    //Course getLatestUpdatedDate();
+
 
 }

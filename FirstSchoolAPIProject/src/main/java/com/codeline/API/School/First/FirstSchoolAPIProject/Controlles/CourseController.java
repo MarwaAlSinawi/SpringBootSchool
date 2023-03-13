@@ -109,10 +109,14 @@ public class CourseController {
         return course;
 
     }
-    @RequestMapping(value = "deleteCoursesByUpdatedDate", method = RequestMethod.POST)
-    public void deleteCoursesByUpdatedDate(@RequestParam String updatedDate){
-        courseServices.deleteCoursesByUpdatedDate(updatedDate);
-
+//    @RequestMapping(value = "deleteCoursesByUpdatedDate", method = RequestMethod.POST)
+//    public void deleteCoursesByUpdatedDate(@RequestParam String updatedDate){
+//        courseServices.deleteCoursesByUpdatedDate(updatedDate);
+//
+//    }
+    @RequestMapping(value = "updateCourse",method = RequestMethod.POST)
+    public void updateCourse(@RequestParam Integer courseId,String courseName,Integer studentId,Boolean isActive){
+       courseServices .updateCourse(courseId,courseName,studentId,isActive);
     }
 
 

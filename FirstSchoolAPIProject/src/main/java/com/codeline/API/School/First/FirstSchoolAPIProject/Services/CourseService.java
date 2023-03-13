@@ -105,17 +105,24 @@ public class CourseService {
         List<Course> course = courseRepository.getCourseByUpdatedDate(updatedDate);
         return course;
     }
-    public void deleteCoursesByUpdatedDate(String updatedDate) {
-        List<Course> course = courseRepository.getCourseByUpdatedDate(updatedDate);
-        course.stream().forEach(x -> x.setIsActive(false));
-        courseRepository.saveAll(course);
-    }
+//    public void deleteCoursesByUpdatedDate(String updatedDate) {
+//        List<Course> course = courseRepository.getCourseByUpdatedDate(updatedDate);
+//        course.stream().forEach(x -> x.setIsActive(false));
+//        courseRepository.saveAll(course);
+//    }
     public List<Course> getCoursesCreatedAfterDate(String createdDate) throws ParseException {
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
         Date usableDate = dateFormatter.parse(createdDate);
         List<Course> courses = courseRepository.getCourseCreatedAfterDate(usableDate);
         return courses;
     }
+    public void updateCourse(Integer courseId, String courseName, Integer studentId, Boolean isActive) {
+        Course course = courseRepository.getCourseById(courseId);
+        course.setName(courseName);
+        course.setIsActive(isActive);
+        courseRepository.save(course);
+    }
+
 
 }
 

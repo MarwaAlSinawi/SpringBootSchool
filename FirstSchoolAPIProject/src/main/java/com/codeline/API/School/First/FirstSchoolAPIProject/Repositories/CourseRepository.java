@@ -38,7 +38,7 @@ public interface CourseRepository extends CrudRepository<Course, Integer> {
     List<Course> getAllNotActiveCourse();
 
 
-    @Query(value = "select c from Course c where c.id = (select Max(c.id) from Course c )")
+    @Query(value = "select * from Course  where id = (select Max(id) from course)",nativeQuery = true)
     Course getLatestRow();
 
     @Modifying
@@ -55,7 +55,7 @@ public interface CourseRepository extends CrudRepository<Course, Integer> {
     @Query(value = "select c from Course c where c.student.id = :studentId")
     List<Course> getCoursesByStudentId(@Param("studentId") Integer id);
 
-   @Query(value = " select c from Course c where c.updatedDate = (select Max(c.updatedDate) from Course c)")
+   @Query(value = " select * from Course  where updated_date = (select Max(updated_date) from Course )", nativeQuery = true)
     Course getLatestUpdatedDate();
   @Query(value = "select * from course where created_date like CONCAT (?1, '%') ", nativeQuery = true)
   List<Course> getCourseByCreatedDate(String createdDate);

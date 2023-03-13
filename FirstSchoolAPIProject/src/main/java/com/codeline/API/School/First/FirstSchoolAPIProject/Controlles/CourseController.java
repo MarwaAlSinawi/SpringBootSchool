@@ -55,4 +55,18 @@ public class CourseController {
         return notActiveCourseList;
 
     }
+    @RequestMapping(value = "getLatestRow", method = RequestMethod.GET)
+    public Course getLatestRow() {
+        Course course = courseServices.getLatestRow();
+        return course;
+    }
+    @RequestMapping(value = "deleteAll", method = RequestMethod.POST)
+    public void deleteAllCourses() {
+        courseServices.deleteAllCourses();
+    }
+    @RequestMapping(value = "deleteCourseById", method = RequestMethod.POST)
+    public void deleteCourseById(@RequestParam Integer courseId) {
+        courseServices.deleteCourseById(courseId);
+    }
+
 }

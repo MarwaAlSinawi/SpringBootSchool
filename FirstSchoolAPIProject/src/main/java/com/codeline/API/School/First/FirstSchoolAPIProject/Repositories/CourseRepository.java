@@ -2,11 +2,13 @@ package com.codeline.API.School.First.FirstSchoolAPIProject.Repositories;
 
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Course;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.School;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository// Collection of code that is going to be used for the Objects
@@ -31,4 +33,13 @@ public interface CourseRepository extends CrudRepository<Course, Integer> {
 
     @Query(value = "SELECT c from Course c where c.isActive = false")
     List<Course> getAllNotActiveCourse();
+
+
+    @Query(value = "select c from Course c where c.id = (select Max(c.id) from Course c )")
+    Course getLatestRow();
+
+    @Modifying
+    @Transactional
+    @Query(value = "update Course c Set c.isActive = false")
+    void deleteAllCourses();
 }

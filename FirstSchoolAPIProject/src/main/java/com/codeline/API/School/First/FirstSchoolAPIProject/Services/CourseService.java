@@ -41,6 +41,20 @@ public class CourseService {
     }
 
 
+
+    public Course getLatestRow() {
+        Course course = courseRepository.getLatestRow();
+        return course;
+    }
+    public void deleteAllCourses() {
+        courseRepository.deleteAllCourses();
+    }
+    public void deleteCourseById(Integer courseId) {
+        Course course = courseRepository.getCourseById(courseId);
+        course.setIsActive(false);
+        courseRepository.save(course);
+    }
+
 }
 
 

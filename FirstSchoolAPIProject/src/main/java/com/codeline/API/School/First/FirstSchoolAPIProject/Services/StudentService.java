@@ -85,4 +85,10 @@ public class StudentService {
         List<Student> student = studentRepository.getStudentsByCreatedDate(createdDate);
         return student;
     }
+    public List<Student> getStudentsByUpdatedDate(String updatedDate) {
+        List<Student> student = studentRepository.getStudentsByUpdatedDate(updatedDate);
+        return student;
+    }
+
+
 }

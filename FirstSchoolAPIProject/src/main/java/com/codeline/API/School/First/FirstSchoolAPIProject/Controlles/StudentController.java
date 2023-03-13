@@ -87,6 +87,12 @@ public class StudentController {
 
 
     }
+    @RequestMapping(value = "getStudentsByUpdatedDate", method = RequestMethod.GET)
+    public List<Student> getStudentsByUpdatedDate(@RequestParam String updatedDate) {
+        List<Student> student = studentService.getStudentsByUpdatedDate(updatedDate);
+        return student;
+
+    }
 }
 
 

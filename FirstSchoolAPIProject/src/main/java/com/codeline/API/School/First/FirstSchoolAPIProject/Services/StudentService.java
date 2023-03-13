@@ -51,6 +51,7 @@ public class StudentService {
         List<Student> studentList = studentRepository.getStudentsBySchoolId(schoolId);
         return studentList;
     }
+
     public List<Student> getAllActiveStudent() {
         return studentRepository.getAllActiveStudent();
     }
@@ -60,13 +61,18 @@ public class StudentService {
     }
 
 
-
     public Student getLatestRow() {
         Student student = studentRepository.getLatestRow();
         return student;
     }
+
     public Student getLatestUpdatedDate() {
         Student student = studentRepository.getLatestUpdatedDate();
         return student;
+    }
+
+    public List<Student> getStudentCreatedAfterDate() {
+        List<Student> studentCreatedAfterDate = studentRepository.getStudentCreatedAfterDate();
+        return studentCreatedAfterDate;
     }
 }

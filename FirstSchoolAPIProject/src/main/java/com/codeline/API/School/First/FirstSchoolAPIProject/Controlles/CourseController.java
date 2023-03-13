@@ -102,6 +102,13 @@ public class CourseController {
         return course;
 
     }
+    @RequestMapping(value = "getCourseByUpdatedDate", method = RequestMethod.GET)
+    public List<Course> getCourseByUpdatedDate(@RequestParam String updatedDate)  {
+        List<Course> course = courseServices.getCoursesByUpdatedDate(updatedDate);
+
+        return course;
+
+    }
 
 }
 

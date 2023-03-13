@@ -43,4 +43,7 @@ public interface StudentRepository extends JpaRepository<Student, Integer> { // 
 
     @Query(value = "select st from Student st where st.id = (select Max(st.id) from Student st )")
     Student getLatestRow();
+
+    @Query(value = " select * from Student  where updated_date = (select Max(updated_date) from Student )", nativeQuery = true)
+    Student getLatestUpdatedDate();
 }

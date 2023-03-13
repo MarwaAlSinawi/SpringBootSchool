@@ -65,4 +65,8 @@ public class StudentService {
         Student student = studentRepository.getLatestRow();
         return student;
     }
+    public Student getLatestUpdatedDate() {
+        Student student = studentRepository.getLatestUpdatedDate();
+        return student;
+    }
 }

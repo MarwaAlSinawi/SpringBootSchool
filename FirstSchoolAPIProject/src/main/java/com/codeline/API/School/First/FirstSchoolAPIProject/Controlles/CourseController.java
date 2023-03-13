@@ -84,12 +84,12 @@ public class CourseController {
 
         return coursesOfAStudent;
     }
-//    @RequestMapping(value = "getLatestUpdatedDate", method = RequestMethod.GET)
-//    public Course getLatestUpdatedDate() {
-//        Course course =courseServices.getLatestUpdatedDate();
-//
-//        return course;
+    @RequestMapping(value = "getLatestUpdatedDate", method = RequestMethod.GET)
+    public Course getLatestUpdatedDate() {
+        Course course = courseServices.getLatestUpdatedDate();
 
+        return course;
+    }
     @RequestMapping(value = "deleteCourseByName", method = RequestMethod.POST)
     public void deleteCourseByName(@RequestParam String courseName) {
     courseServices.deleteCoursesByName(courseName);

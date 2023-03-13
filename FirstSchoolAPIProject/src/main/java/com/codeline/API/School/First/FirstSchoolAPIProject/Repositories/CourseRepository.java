@@ -55,8 +55,8 @@ public interface CourseRepository extends CrudRepository<Course, Integer> {
     @Query(value = "select c from Course c where c.student.id = :studentId")
     List<Course> getCoursesByStudentId(@Param("studentId") Integer id);
 
-  //  @Query(value = " select c from Course c where c.updatedDate = (select Max(c.updatedDate) from Course c)")
-    //Course getLatestUpdatedDate();
+   @Query(value = " select c from Course c where c.updatedDate = (select Max(c.updatedDate) from Course c)")
+    Course getLatestUpdatedDate();
   @Query(value = "select * from course where created_date like CONCAT (?1, '%') ", nativeQuery = true)
   List<Course> getCourseByCreatedDate(String createdDate);
 

@@ -80,10 +80,10 @@ public class CourseService {
         return coursesOfAStudent;
     }
 
-    //public Course getLatestUpdatedDate() {
-      //  Course course = courseRepository.getLatestUpdatedDate();
-      //  return course;
-
+    public Course getLatestUpdatedDate() {
+        Course course = courseRepository.getLatestUpdatedDate();
+        return course;
+    }
 
     public void deleteCoursesByName(String courseName) {
 

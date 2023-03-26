@@ -90,5 +90,10 @@ public class StudentService {
         return student;
     }
 
-
-}
+//    public void deleteStudentById(Integer Id) {
+//       Student student = studentRepository.getStudentById(Id);
+//       student.setIsActive(false);
+//        studentRepository.save(student);
+//
+//    }
+    }

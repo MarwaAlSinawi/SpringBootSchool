@@ -4,6 +4,7 @@ package com.codeline.API.School.First.FirstSchoolAPIProject.Controlles;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Mark;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Student;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Services.StudentService;
+import com.codeline.API.School.First.FirstSchoolAPIProject.Slack.SlackClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,7 +21,8 @@ public class StudentController {
 
     @Autowired
     StudentService studentService;
-
+    @Autowired
+    SlackClient slackClient;
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     //function that returns all student
     public List<Student> getAllStudent() {
@@ -93,6 +95,11 @@ public class StudentController {
         return student;
 
     }
+//    @RequestMapping(value = "deleteStudentById", method = RequestMethod.POST)
+//    public void deleteStudentById(@RequestParam Integer studentId) {
+//        studentService.deleteStudentById(studentId);
+//
+//    }
 }
 
 

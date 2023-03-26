@@ -3,6 +3,7 @@ package com.codeline.API.School.First.FirstSchoolAPIProject.Controlles;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Course;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Repositories.CourseRepository;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Services.CourseService;
+import com.codeline.API.School.First.FirstSchoolAPIProject.Slack.SlackClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,8 +18,9 @@ import java.util.List;
 
 public class CourseController {
 
-    @Autowired // create instance, and then it can be used in all the program
 
+    @Autowired
+    SlackClient slackClient;
 
     CourseService courseServices;
     @Autowired
@@ -29,6 +31,7 @@ public class CourseController {
     public List<Course> getAllCourse() {
         CourseRepository courseService;
         List<Course> course = courseServices.getAllCourse();
+
         return course;
     }
 

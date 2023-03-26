@@ -1,5 +1,8 @@
 package com.codeline.API.School.First.FirstSchoolAPIProject.Models;
 
+import com.codeline.API.School.First.FirstSchoolAPIProject.Slack.SlackClient;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 
 @Entity

@@ -3,6 +3,7 @@ package com.codeline.API.School.First.FirstSchoolAPIProject.Controlles;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Course;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Mark;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Services.MarkService;
+import com.codeline.API.School.First.FirstSchoolAPIProject.Slack.SlackClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,7 +19,8 @@ public class MarkController {
 
     @Autowired
     MarkService markServices; // markServices Reference
-
+    @Autowired
+    SlackClient slackClient;
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     //function that returns all student
     public List<Mark> getAllMarks() { // This will take from the browser and then return in the browser

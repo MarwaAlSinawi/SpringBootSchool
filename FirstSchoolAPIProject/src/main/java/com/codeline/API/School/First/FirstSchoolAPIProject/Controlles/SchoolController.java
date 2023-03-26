@@ -3,6 +3,7 @@ package com.codeline.API.School.First.FirstSchoolAPIProject.Controlles;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.School;
 import com.codeline.API.School.First.FirstSchoolAPIProject.RequestObject.SchoolRequestForCreateDateUpdate;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Services.SchoolService;
+import com.codeline.API.School.First.FirstSchoolAPIProject.Slack.SlackClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,24 +21,27 @@ public class SchoolController {
     @Autowired
     SchoolService schoolService;
 
-
+    @Autowired
+    SlackClient slackClient;
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     //function that returns all school
     public List<School> getAllSchools() {
         List<School> schools = schoolService.getAllSchools();
-
+        slackClient.sendMessage(schoolService.formatSchoolListForSlack(schools).toString());
         return schools;
     }
 
     @RequestMapping(value = "/getById", method = RequestMethod.GET)
     public School getSchoolById(@RequestParam Integer schoolId) {
         School school = schoolService.getSchoolById(schoolId);
+        slackClient.sendMessage("the school ID is :"+school.getId());
         return school;
     }
 
     @RequestMapping(value = "/getBySchoolName", method = RequestMethod.GET)
     public School getBySchoolName(@RequestParam String school_name) {
         School schoolName = schoolService.getSchoolByName(school_name);
+        slackClient.sendMessage("the school Name is :"+schoolName.getId());
         return schoolName;
     }
 

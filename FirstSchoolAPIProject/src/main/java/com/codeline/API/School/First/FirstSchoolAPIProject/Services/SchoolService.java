@@ -142,5 +142,20 @@ public class SchoolService {
         School schoolThatUserWasLookingFor = schoolRepository.getSchoolById(schoolIdThatUserWants);
         return schoolThatUserWasLookingFor;
     }
+    public StringBuilder formatSchoolObjectForSlack(School school){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Id: *" + school.getId() + "*\n");
+        sb.append("School Name: *" + school.getName() + "*\n");
+        sb.append("Is Active: *" + school.getIsActive() + "*\n");
+        return sb;
+    }
+    public StringBuilder formatSchoolListForSlack(List<School> schools){
+        StringBuilder mainStringBuilder = new StringBuilder();
+        for (School schoolFromListOfSchools: schools) {
+            mainStringBuilder.append(formatSchoolObjectForSlack(schoolFromListOfSchools));
+            mainStringBuilder.append("\n");
+        }
+        return mainStringBuilder;
+    }
 }
 

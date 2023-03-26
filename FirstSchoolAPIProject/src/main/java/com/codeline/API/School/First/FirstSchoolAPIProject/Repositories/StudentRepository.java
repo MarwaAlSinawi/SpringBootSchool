@@ -62,6 +62,6 @@ public interface StudentRepository extends JpaRepository<Student, Integer> { // 
     @Query(value = "select * from student where created_date like CONCAT (?1, '%') ", nativeQuery = true)
     List<Student> getStudentsByCreatedDate(String createdDate);
 
-    @Query(value = "select * from student where updated_date like CONCAT (?1, '%') ", nativeQuery = true)
-    List<Student> getStudentsByUpdatedDate(String updatedDate);
+   @Query(value = "select * from student where updated_date like CONCAT (?1, '%') ", nativeQuery = true)
+   List<Student> getStudentsByUpdatedDate(String updatedDate);
 }

@@ -31,6 +31,9 @@ public class SchoolController {
         return schools;
     }
 
+
+
+
     @RequestMapping(value = "/getById", method = RequestMethod.GET)
     public School getSchoolById(@RequestParam Integer schoolId) {
         School school = schoolService.getSchoolById(schoolId);

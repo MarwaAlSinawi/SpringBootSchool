@@ -9,7 +9,7 @@ import static java.awt.SystemColor.text;
 public class SlackClient {
     public String sendMessage(String text) {
      return WebClient.create().post()
-                .uri("https://hooks.slack.com/services/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")
+                .uri("")
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(new SlackPayload(text))
             .retrieve()

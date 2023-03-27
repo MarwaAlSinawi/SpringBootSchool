@@ -37,7 +37,7 @@ public class SchoolController {
     @RequestMapping(value = "/getById", method = RequestMethod.GET)
     public School getSchoolById(@RequestParam Integer schoolId) {
         School school = schoolService.getSchoolById(schoolId);
-        slackClient.sendMessage("the school ID is :"+school.getId());
+        //slackClient.sendMessage("the school ID is :"+school.getId());
         return school;
     }
 

@@ -45,6 +45,14 @@ public class Student extends BaseEntity{
         this.rollNumber = rollNumber;
 
     }
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
+    }
 }
 
 

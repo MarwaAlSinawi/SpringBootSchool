@@ -3,14 +3,17 @@ package com.codeline.API.School.First.FirstSchoolAPIProject.Controlles;
 
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Mark;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Student;
+import com.codeline.API.School.First.FirstSchoolAPIProject.Services.ReportService;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Services.StudentService;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Slack.SlackClient;
+import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +24,11 @@ public class StudentController {
 
     @Autowired
     StudentService studentService;
+
+    @Autowired
+    ReportService reportService;
+
+
     @Autowired
     SlackClient slackClient;
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
@@ -99,6 +107,11 @@ public class StudentController {
 //    public void deleteStudentById(@RequestParam Integer studentId) {
 //        studentService.deleteStudentById(studentId);
 //
+//    }
+
+//    @RequestMapping(value = "studentReport" ,method = RequestMethod.GET)
+//    public String  generateReport() throws JRException, FileNotFoundException {
+//        return reportService.generateReportForStudent();
 //    }
 }
 

@@ -2,13 +2,13 @@
 <!-- Created with Jaspersoft Studio version 6.20.1.final using JasperReports Library version 6.20.1-7584acb244139816654f64e2fd57a00d3e31921e  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StudentReport" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b36614ad-c2a1-4fea-91e6-43edd2384123">
 
-    <field name="schoolName" class="java.lang.String">
+    <field name="courseName" class="java.lang.String">
 
     </field>
-    <field name="studentName" class="java.lang.String">
+    <field name="obtainMark" class="java.lang.Integer">
 
     </field>
-    <field name="studentRollNumber" class="java.lang.String">
+    <field name="studentGrade" class="java.lang.String">
 
     </field>
     <background>
@@ -50,7 +50,7 @@
                 <textElement textAlignment="Center">
                     <font size="14" isBold="true"/>
                 </textElement>
-                <text><![CDATA[schoolName]]></text>
+                <text><![CDATA[Course Name]]></text>
             </staticText>
             <staticText>
                 <reportElement mode="Opaque" x="185" y="0" width="185" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="32bdd2e9-d5db-4c3f-ba1c-d071188c77c2">
@@ -59,7 +59,7 @@
                 <textElement textAlignment="Center">
                     <font size="14" isBold="true"/>
                 </textElement>
-                <text><![CDATA[studentName]]></text>
+                <text><![CDATA[Obtain Mark]]></text>
             </staticText>
             <staticText>
                 <reportElement mode="Opaque" x="370" y="0" width="185" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="39fdf83b-370c-46db-8bc6-e7ed65e8d2e2">
@@ -68,7 +68,7 @@
                 <textElement textAlignment="Center">
                     <font size="14" isBold="true"/>
                 </textElement>
-                <text><![CDATA[studentRollNumber]]></text>
+                <text><![CDATA[Student Grade]]></text>
             </staticText>
         </band>
     </columnHeader>
@@ -84,7 +84,7 @@
                 <textElement>
                     <font size="14"/>
                 </textElement>
-                <textFieldExpression><![CDATA[$F{schoolName}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$F{courseName}]]></textFieldExpression>
             </textField>
             <textField textAdjust="StretchHeight">
                 <reportElement x="198" y="0" width="185" height="20" uuid="6ff237a0-86a5-481f-9635-a73b929afbbf">
@@ -93,7 +93,7 @@
                 <textElement>
                     <font size="14"/>
                 </textElement>
-                <textFieldExpression><![CDATA[$F{studentName}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$F{obtainMark}]]></textFieldExpression>
             </textField>
             <textField textAdjust="StretchHeight">
                 <reportElement x="380" y="0" width="185" height="20" uuid="9b963f53-b00f-4566-ba14-c14523989fb1">
@@ -102,7 +102,7 @@
                 <textElement>
                     <font size="14"/>
                 </textElement>
-                <textFieldExpression><![CDATA[$F{studentRollNumber}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$F{studentGrade}]]></textFieldExpression>
             </textField>
         </band>
     </detail>

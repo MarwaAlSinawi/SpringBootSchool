@@ -1,6 +1,6 @@
 package com.codeline.API.School.First.FirstSchoolAPIProject.Controlles;
 
-import com.codeline.API.School.First.FirstSchoolAPIProject.Report.StudentReportService;
+
 import com.codeline.API.School.First.FirstSchoolAPIProject.Services.ReportService;
 import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,27 +14,34 @@ import java.io.FileNotFoundException;
 public class ReportController {
 
 
+    @Autowired
+    ReportService reportService;
 
-        @Autowired
-        ReportService reportService;
-//        @Autowired
+    //        @Autowired
 //        StudentReportService studentReportService;
-        @RequestMapping(value = "schoolReport" ,method = RequestMethod.GET)
-        public String generateSchoolsReport() throws JRException, FileNotFoundException {
-            return reportService.generateReport();
-        }
+    @RequestMapping(value = "schoolReport", method = RequestMethod.GET)
+    public String generateSchoolsReport() throws JRException, FileNotFoundException {
+        return reportService.generateReport();
+    }
 
 //        @RequestMapping(value = "studentReport" ,method = RequestMethod.GET)
 //        public void generateReport() throws JRException, FileNotFoundException {
 //            studentReportService.generateReportForStudent();
 //        }
 
-    @RequestMapping(value = "studentReport" ,method = RequestMethod.GET)
-    public String  generateReport() throws JRException, FileNotFoundException {
+    @RequestMapping(value = "studentReport", method = RequestMethod.GET)
+    public String generateReport() throws JRException, FileNotFoundException {
         return reportService.generateReportForStudent();
     }
-    @RequestMapping(value = "MarkReport" ,method = RequestMethod.GET)
-    public String  generateMarkReport() throws JRException, FileNotFoundException {
+
+    @RequestMapping(value = "MarkReport", method = RequestMethod.GET)
+    public String generateMarkReport() throws JRException, FileNotFoundException {
         return reportService.generateMarkReport();
     }
+
+    @RequestMapping(value = "generateMarkReportAverage", method = RequestMethod.GET)
+    public void generateMarkReportAverage() throws JRException, FileNotFoundException {
+        reportService.generateMarkReportAverage();
+
     }
+}

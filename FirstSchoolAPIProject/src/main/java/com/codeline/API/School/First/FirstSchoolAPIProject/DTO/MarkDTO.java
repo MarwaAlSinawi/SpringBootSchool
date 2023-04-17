@@ -8,13 +8,13 @@ import lombok.Setter;
 @Setter
 @Data
 public class MarkDTO {
-    public MarkDTO(String curseName, Integer obtainMark, String studentGrade) {
-        this.curseName = curseName;
+    public MarkDTO(String courseName, Integer obtainMark, String studentGrade) {
+        this.courseName = courseName;
         this.obtainMark = obtainMark;
         this.studentGrade = studentGrade;
     }
 
-    String curseName;
+    String courseName;
     Integer obtainMark;
     String  studentGrade;
 }

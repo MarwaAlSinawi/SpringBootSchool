@@ -187,6 +187,27 @@ public class ReportService {
 
         return "Report generated : " + pathToReports + "\\generateOverAllStudentPerformance.pdf";
     }
+    public String generateTotalNumberOfStudentsInEachSchool() throws Exception {
+        List<School> schoolList = schoolRepository.getAllSchools();
+        List<CountOfStudentWithSchoolDTO> countOfStudent = new ArrayList<>();
+        for (School school : schoolList) {
+            Integer schoolId = school.getId();
+            String schoolName = school.getName();
+
+            Integer countOfStudents = studentRepository.getCountOfStudentsBySchoolId(schoolId);
+            CountOfStudentWithSchoolDTO countOfStudentWithSchoolDTO = new CountOfStudentWithSchoolDTO(schoolName, countOfStudents);
+            countOfStudent.add(countOfStudentWithSchoolDTO);
+        }
+        File file = ResourceUtils.getFile("classpath:generateTotalNumberOfStudentsInEachSchool.jrxml");//file object
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(countOfStudent);
+        Map<String, Object> paramters = new HashMap<>();
+        paramters.put("CreatedBy", "Marwa ");
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, paramters, dataSource);
+        JasperExportManager.exportReportToPdfFile(jasperPrint, pathToReports + "\\generateTotalNumberOfStudentsInEachSchool.pdf");
+
+        return "Report generated : " + pathToReports + "\\generateTotalNumberOfStudentsInEachSchool.pdf";
+    }
 
 }
 

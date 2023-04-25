@@ -1,9 +1,11 @@
 package com.codeline.API.School.First.FirstSchoolAPIProject.Services;
 
 import com.codeline.API.School.First.FirstSchoolAPIProject.DTO.*;
+import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Course;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Mark;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.School;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Student;
+import com.codeline.API.School.First.FirstSchoolAPIProject.Repositories.CourseRepository;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Repositories.MarkRepository;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Repositories.SchoolRepository;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Repositories.StudentRepository;
@@ -30,6 +32,9 @@ public class ReportService {
 
     @Autowired
     private MarkRepository markRepository;
+
+    @Autowired
+    private CourseRepository courseRepository;
 
     public static final String pathToReports = "C:\\Users\\user019\\Downloads\\Reports";//class path
 
@@ -193,7 +198,6 @@ public class ReportService {
         for (School school : schoolList) {
             Integer schoolId = school.getId();
             String schoolName = school.getName();
-
             Integer countOfStudents = studentRepository.getCountOfStudentsBySchoolId(schoolId);
             CountOfStudentWithSchoolDTO countOfStudentWithSchoolDTO = new CountOfStudentWithSchoolDTO(schoolName, countOfStudents);
             countOfStudent.add(countOfStudentWithSchoolDTO);
@@ -208,6 +212,27 @@ public class ReportService {
 
         return "Report generated : " + pathToReports + "\\generateTotalNumberOfStudentsInEachSchool.pdf";
     }
+    public String generateTheDistributionOfGrades() throws Exception {
+        List<Course> coursesNames =courseRepository.getAllCourse();
+        List<String> listOfUniqueGrades = markRepository.getDistinctGrades();
+        List<CourseWithGradesDTO> courseWithGradesDTOS = new ArrayList<>();
+        for (Course courseName : coursesNames) {
+            for (String grade : listOfUniqueGrades) {
+                Integer countOfMarksByGradeAndCourseName = markRepository.getCountOfMarksByGradeAndCourseName(grade, courseName);
+                courseWithGradesDTOS.add(new CourseWithGradesDTO(courseName, grade, countOfMarksByGradeAndCourseName));
+            }
+        }
+        File file = ResourceUtils.getFile("classpath:generateTheDistributionOfGrades.jrxml");//file object
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(listOfUniqueGrades);
+        Map<String, Object> paramters = new HashMap<>();
+        paramters.put("CreatedBy", "Marwa ");
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, paramters, dataSource);
+        JasperExportManager.exportReportToPdfFile(jasperPrint, pathToReports + "\\generateTheDistributionOfGrades.pdf");
+
+        return "Report generated : " + pathToReports + "\\generateTheDistributionOfGrades.pdf";
+    }
+
 
 }
 

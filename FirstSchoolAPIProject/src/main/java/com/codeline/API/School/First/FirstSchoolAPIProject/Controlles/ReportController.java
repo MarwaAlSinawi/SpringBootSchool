@@ -61,5 +61,8 @@ public class ReportController {
     public String generateTotalNumberOfStudentsInEachSchool() throws Exception {
         return reportService.generateTotalNumberOfStudentsInEachSchool();
     }
-
+    @RequestMapping(value = "generateDistributionOfGradesReport")
+    public String generateDistributionOfGradesReport() throws Exception {
+        return reportService.generateTheDistributionOfGrades();
+    }
 }

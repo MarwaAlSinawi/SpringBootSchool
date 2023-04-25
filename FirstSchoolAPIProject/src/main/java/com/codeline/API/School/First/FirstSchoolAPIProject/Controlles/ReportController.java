@@ -53,4 +53,8 @@ public class ReportController {
             return new Exception("Error").getMessage();
         }
     }
+    @RequestMapping(value = "generateOverAllStudentPerformance")
+    public String generateOverAllStudentPerformance() throws Exception {
+        return reportService.generateOverAllStudentPerformance();
+    }
 }

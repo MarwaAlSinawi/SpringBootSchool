@@ -1,9 +1,6 @@
 package com.codeline.API.School.First.FirstSchoolAPIProject.Services;
 
-import com.codeline.API.School.First.FirstSchoolAPIProject.DTO.CourseMarkAverage;
-import com.codeline.API.School.First.FirstSchoolAPIProject.DTO.MarkDTO;
-import com.codeline.API.School.First.FirstSchoolAPIProject.DTO.StudentDTO;
-import com.codeline.API.School.First.FirstSchoolAPIProject.DTO.TopPerformingStudentDTO;
+import com.codeline.API.School.First.FirstSchoolAPIProject.DTO.*;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Mark;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.School;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Student;
@@ -168,7 +165,30 @@ public class ReportService {
 
         return "Report generated : " + pathToReports + "\\topPreformingStudent.pdf";
     }
+    public String generateOverAllStudentPerformance() throws Exception {
+        List<Student> studentList = studentRepository.getAllStudent();
+        List<StudentMarkDTO> studentMarkDTOS = new ArrayList<>();
+        for (Student student : studentList) {
+            Integer studentId = student.getId();
+            String studentRollNumber = student.getRollNumber();
+            String studentName = student.getName();
+            Integer avgOfMarksByStudentId = markRepository.getAvgMarkByStudentId(studentId);
+            StudentMarkDTO studentDto = new StudentMarkDTO(studentId, studentRollNumber, studentName, avgOfMarksByStudentId);
+            studentMarkDTOS.add(studentDto);
+
+        }
+        File file = ResourceUtils.getFile("classpath:generateOverAllStudentPerformance.jrxml");//file object
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(studentMarkDTOS);
+        Map<String, Object> paramters = new HashMap<>();
+        paramters.put("CreatedBy", "Marwa ");
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, paramters, dataSource);
+        JasperExportManager.exportReportToPdfFile(jasperPrint, pathToReports + "\\generateOverAllStudentPerformance.pdf");
+
+        return "Report generated : " + pathToReports + "\\generateOverAllStudentPerformance.pdf";
     }
+
+}
 
 
 

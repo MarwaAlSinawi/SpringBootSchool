@@ -5,12 +5,11 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Data
-@AllArgsConstructor
-@Setter
 @Getter
-public class CourseWithGradesDTO {
+@Setter
+@AllArgsConstructor
+@Data
+public class TopPerformingCourseDTO {
+    String schoolName;
     String courseName;
-    String grade;
-    Integer countOfMarks;
 }

@@ -213,10 +213,10 @@ public class ReportService {
         return "Report generated : " + pathToReports + "\\generateTotalNumberOfStudentsInEachSchool.pdf";
     }
     public String generateTheDistributionOfGrades() throws Exception {
-        List<Course> coursesNames =courseRepository.getAllCourse();
+        List<String> coursesNames = courseRepository.getAllCourseName();
         List<String> listOfUniqueGrades = markRepository.getDistinctGrades();
         List<CourseWithGradesDTO> courseWithGradesDTOS = new ArrayList<>();
-        for (Course courseName : coursesNames) {
+        for (String courseName : coursesNames) {
             for (String grade : listOfUniqueGrades) {
                 Integer countOfMarksByGradeAndCourseName = markRepository.getCountOfMarksByGradeAndCourseName(grade, courseName);
                 courseWithGradesDTOS.add(new CourseWithGradesDTO(courseName, grade, countOfMarksByGradeAndCourseName));
@@ -224,13 +224,42 @@ public class ReportService {
         }
         File file = ResourceUtils.getFile("classpath:generateTheDistributionOfGrades.jrxml");//file object
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
-        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(listOfUniqueGrades);
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(courseWithGradesDTOS);
         Map<String, Object> paramters = new HashMap<>();
         paramters.put("CreatedBy", "Marwa ");
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, paramters, dataSource);
         JasperExportManager.exportReportToPdfFile(jasperPrint, pathToReports + "\\generateTheDistributionOfGrades.pdf");
 
         return "Report generated : " + pathToReports + "\\generateTheDistributionOfGrades.pdf";
+    }
+    public String generateTopPerformanceCoursesInEachSchool() throws Exception {
+        List<School> schoolList = schoolRepository.getAllSchools();
+        Map<School, Course> schoolCourseMap = new HashMap<>();
+        List<TopPerformingCourseDTO> topPerformingCourseDTOS = new ArrayList<>();
+        for (School school : schoolList) {
+            Integer schoolId = school.getId();
+            List<Course> courseList = courseRepository.getCourseBySchoolId(schoolId);
+            Integer highestAverageMarkForCourses = 0;
+            Course courseWithHighestMark = new Course();
+            for (Course course : courseList) {
+                Integer courseId = course.getId();
+                Integer averageMarkForCourse = markRepository.averageMarkForCourse(courseId);
+                if (averageMarkForCourse != null && averageMarkForCourse > highestAverageMarkForCourses) {
+                    highestAverageMarkForCourses = averageMarkForCourse;
+                    courseWithHighestMark = course;
+                }
+                topPerformingCourseDTOS.add(new TopPerformingCourseDTO(school.getName(),courseWithHighestMark.getName()));
+            }
+        }
+        File file = ResourceUtils.getFile("classpath:generateTopPerformanceCoursesInEachSchool.jrxml");//file object
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(topPerformingCourseDTOS);
+        Map<String, Object> paramters = new HashMap<>();
+        paramters.put("CreatedBy", "Marwa ");
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, paramters, dataSource);
+        JasperExportManager.exportReportToPdfFile(jasperPrint, pathToReports + "\\generateTopPerformanceCoursesInEachSchool.pdf");
+
+        return "Report generated : " + pathToReports + "\\generateTopPerformanceCoursesInEachSchool.pdf";
     }
 
 

@@ -18,17 +18,14 @@ import java.util.List;
 public interface CourseRepository extends CrudRepository<Course, Integer> {
 
     @Query("SELECT c from Course c")
-
     List<Course> getAllCourse();
 
     @Query("SELECT c from Course c where c.id= :courseId")
-    // :id is coming from the user
+        // :id is coming from the user
     Course getCourseById(@Param("courseId") Integer id);
 
     @Query("SELECT c from Course c where c.name= :courseName")
     List<Course> getCourseByName(@Param("courseName") String course_name); // mapping the query and returning the Course
-
-
 
 
     @Query(value = "SELECT c from Course c where c.isActive = true")
@@ -38,7 +35,7 @@ public interface CourseRepository extends CrudRepository<Course, Integer> {
     List<Course> getAllNotActiveCourse();
 
 
-    @Query(value = "select * from Course  where id = (select Max(id) from course)",nativeQuery = true)
+    @Query(value = "select * from Course  where id = (select Max(id) from course)", nativeQuery = true)
     Course getLatestRow();
 
     @Modifying
@@ -55,10 +52,11 @@ public interface CourseRepository extends CrudRepository<Course, Integer> {
     @Query(value = "select c from Course c where c.student.id = :studentId")
     List<Course> getCoursesByStudentId(@Param("studentId") Integer id);
 
-   @Query(value = " select * from Course  where updated_date = (select Max(updated_date) from Course )", nativeQuery = true)
+    @Query(value = " select * from Course  where updated_date = (select Max(updated_date) from Course )", nativeQuery = true)
     Course getLatestUpdatedDate();
-  @Query(value = "select * from course where created_date like CONCAT (?1, '%') ", nativeQuery = true)
-  List<Course> getCourseByCreatedDate(String createdDate);
+
+    @Query(value = "select * from course where created_date like CONCAT (?1, '%') ", nativeQuery = true)
+    List<Course> getCourseByCreatedDate(String createdDate);
 
     @Query(value = "select * from course where updated_date like CONCAT (?1, '%') ", nativeQuery = true)
     List<Course> getCourseByUpdatedDate(String updatedDate);
@@ -67,6 +65,10 @@ public interface CourseRepository extends CrudRepository<Course, Integer> {
     List<Course> getCourseCreatedAfterDate(@Param("createdDate") Date createdDate);
 
 
+    @Query(value = "select c from Course c where c.student.school.id = :schoolId")
+    List<Course> getCourseBySchoolId(@Param("schoolId") Integer schoolId);
 
+    @Query("SELECT c.name from Course c")
+    List<String> getAllCourseName();
 
 }

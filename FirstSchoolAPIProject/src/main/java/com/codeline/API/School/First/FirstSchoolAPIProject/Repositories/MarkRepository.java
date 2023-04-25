@@ -1,6 +1,5 @@
 package com.codeline.API.School.First.FirstSchoolAPIProject.Repositories;
 
-import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Course;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Mark;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -35,9 +34,12 @@ public interface MarkRepository extends CrudRepository<Mark, Integer> {
     Integer getAvgMarkByStudentId(@Param("studentId") Integer studentId);
 
     @Query(value = " select count(m) from Mark m where m.course.name = :courseName And m.grade = :grade ")
-    Integer getCountOfMarksByGradeAndCourseName(@Param("grade") String grade, @Param("courseName") Course courseName);
+    Integer getCountOfMarksByGradeAndCourseName( @Param("courseName") String courseName,@Param("grade") String grade);
 
     @Query(value = " select Distinct(m.grade) from Mark m ")
     List<String> getDistinctGrades();
+
+    @Query(value = " select avg(m.obtainMark) from Mark m where m.course.id =:courseId ")
+    Integer averageMarkForCourse(@Param("courseId") Integer courseId);
 }
 

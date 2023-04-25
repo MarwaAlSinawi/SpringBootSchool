@@ -28,4 +28,8 @@ public interface MarkRepository extends CrudRepository<Mark, Integer> {
 
     @Query(value = "SELECT m from Course m where m.isActive = false")
     List<Mark> getAllNotActiveMark();
+
+    @Query(value = "select sum(m.obtainMark) from Mark m where m.course.student.id = :studentId ")
+    Integer getSumOfMarksByStudentId(@Param("studentId") Integer studentId);
+
 }

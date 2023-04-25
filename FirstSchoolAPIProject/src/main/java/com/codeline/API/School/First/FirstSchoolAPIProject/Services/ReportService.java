@@ -3,6 +3,7 @@ package com.codeline.API.School.First.FirstSchoolAPIProject.Services;
 import com.codeline.API.School.First.FirstSchoolAPIProject.DTO.CourseMarkAverage;
 import com.codeline.API.School.First.FirstSchoolAPIProject.DTO.MarkDTO;
 import com.codeline.API.School.First.FirstSchoolAPIProject.DTO.StudentDTO;
+import com.codeline.API.School.First.FirstSchoolAPIProject.DTO.TopPerformingStudentDTO;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Mark;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.School;
 import com.codeline.API.School.First.FirstSchoolAPIProject.Models.Student;
@@ -138,6 +139,35 @@ public class ReportService {
 
             return "Report generated : " + pathToReports + "\\AverageMarkOfEachCourseQuestion3.pdf";
         }
+    public String generateTopPerformingStudentInEachSchool() throws Exception {
+        List<School> schoolList = schoolRepository.getAllSchools();
+        List<TopPerformingStudentDTO> topPreformingStudentDTOSList = new ArrayList<>();
+
+        for (School school : schoolList) {
+            List<Student> studentList = studentRepository.getStudentBySchoolId(school.getId());
+            Integer highestMarks = 0;
+            Student studentWithHighestMarks = new Student();
+            for (Student student : studentList) {
+                Integer studentId = student.getId();
+                Integer studentTotalMark = markRepository.getSumOfMarksByStudentId(studentId);
+                if (studentTotalMark != null && studentTotalMark > highestMarks) {
+                    highestMarks = studentTotalMark;
+                    studentWithHighestMarks = student;
+                }
+            }
+            topPreformingStudentDTOSList.add(new TopPerformingStudentDTO(studentWithHighestMarks.getName(),school.getName()));
+
+        }
+        File file = ResourceUtils.getFile("classpath:topPreformingStudent.jrxml");//file object
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(topPreformingStudentDTOSList);
+        Map<String, Object> paramters = new HashMap<>();
+        paramters.put("CreatedBy", "Marwa ");
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, paramters, dataSource);
+        JasperExportManager.exportReportToPdfFile(jasperPrint, pathToReports + "\\TopPerformingStudent.pdf");
+
+        return "Report generated : " + pathToReports + "\\topPreformingStudent.pdf";
+    }
     }
 
 

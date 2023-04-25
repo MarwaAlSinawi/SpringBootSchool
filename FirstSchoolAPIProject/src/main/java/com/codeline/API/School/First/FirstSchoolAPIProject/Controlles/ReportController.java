@@ -44,4 +44,13 @@ public class ReportController {
         reportService.generateMarkReportAverage();
 
     }
+    @RequestMapping(method = RequestMethod.GET, value = "/topPreformingStudentInEachSchoolReport")
+    public String generateTopPerformingStudentInEachSchoolReport() {
+        try {
+            return reportService.generateTopPerformingStudentInEachSchool();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return new Exception("Error").getMessage();
+        }
+    }
 }

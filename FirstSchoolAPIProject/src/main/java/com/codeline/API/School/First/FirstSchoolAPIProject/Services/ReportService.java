@@ -261,6 +261,24 @@ public class ReportService {
 
         return "Report generated : " + pathToReports + "\\generateTopPerformanceCoursesInEachSchool.pdf";
     }
+    public String generateStudentWithHighCourseScoreAboveThresholdReport(Integer courseThreshold) throws Exception {
+        List<Course> courseList = courseRepository.getAllCourse();
+        List<CourseWithStudentCountDTO> courseWithStudentCountDTOS = new ArrayList<>();
+        for (Course course : courseList) {
+            String courseName = course.getName();
+            Integer countOfStudents = markRepository.countOfStudentsHavingHighScoreInCourse(courseThreshold, courseName);
+            courseWithStudentCountDTOS.add(new CourseWithStudentCountDTO(courseName, countOfStudents));
+        }
+        File file = ResourceUtils.getFile("classpath:generateStudentWithHighCourseScoreAboveThresholdReport.jrxml");//file object
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(courseWithStudentCountDTOS);
+        Map<String, Object> paramters = new HashMap<>();
+        paramters.put("CreatedBy", "Marwa ");
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, paramters, dataSource);
+        JasperExportManager.exportReportToPdfFile(jasperPrint, pathToReports + "\\generateStudentWithHighCourseScoreAboveThresholdReport.pdf");
+
+        return "Report generated : " + pathToReports + "\\generateStudentWithHighCourseScoreAboveThresholdReport.pdf";
+    }
 
 
 }

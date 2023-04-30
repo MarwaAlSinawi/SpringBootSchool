@@ -73,5 +73,9 @@ public class ReportController {
     public String generateDistributionOfGradesReport()throws Exception{
         return reportService.generateTheDistributionOfGrades();
     }
+    @RequestMapping(value = "StudentWithHighCourseScoreAboveThreshold")
+    public String generateStudentWithHighCourseScoreAboveThreshold(Integer courseThreshold) throws Exception {
+        return reportService.generateStudentWithHighCourseScoreAboveThresholdReport(courseThreshold);
+    }
 
 }

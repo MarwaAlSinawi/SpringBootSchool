@@ -77,5 +77,10 @@ public class ReportController {
     public String generateStudentWithHighCourseScoreAboveThreshold(Integer courseThreshold) throws Exception {
         return reportService.generateStudentWithHighCourseScoreAboveThresholdReport(courseThreshold);
     }
+    @RequestMapping(value = "OverallPerformanceOfEachSchool")
+    public String generateOverallPerformanceOfEachSchool() throws Exception {
+        return reportService.generateOverallPerformanceOfEachSchool();
+    }
+
 
 }

@@ -279,6 +279,25 @@ public class ReportService {
 
         return "Report generated : " + pathToReports + "\\generateStudentWithHighCourseScoreAboveThresholdReport.pdf";
     }
+    public String generateOverallPerformanceOfEachSchool() throws Exception {
+        List<School> schoolList = schoolRepository.getAllSchools();
+        List<OverallSchoolStudentPerformanceDTO> overallSchoolStudentPerformanceDTOS = new ArrayList<>();
+        for (School school : schoolList) {
+            String schoolName = school.getName();
+            Integer schoolId = school.getId();
+            Integer averageOfAllStudentsMarks = markRepository.getAvgOfMarksBySchoolId(schoolId);
+            overallSchoolStudentPerformanceDTOS.add(new OverallSchoolStudentPerformanceDTO(schoolName, averageOfAllStudentsMarks));
+        }
+        File file = ResourceUtils.getFile("classpath:generateOverallPerformanceOfEachSchool.jrxml");//file object
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(overallSchoolStudentPerformanceDTOS);
+        Map<String, Object> paramters = new HashMap<>();
+        paramters.put("CreatedBy", "Marwa ");
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, paramters, dataSource);
+        JasperExportManager.exportReportToPdfFile(jasperPrint, pathToReports + "\\generateOverallPerformanceOfEachSchool.pdf");
+
+        return "Report generated : " + pathToReports + "\\generateOverallPerformanceOfEachSchool.pdf";
+    }
 
 
 }

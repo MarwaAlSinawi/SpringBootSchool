@@ -73,4 +73,5 @@ public class ReportController {
     public String generateDistributionOfGradesReport()throws Exception{
         return reportService.generateTheDistributionOfGrades();
     }
+
 }
